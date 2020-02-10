@@ -46,6 +46,16 @@ MVVM Model-View-ViewModel pattern
   * 端口不一致
   * IP不一致
 
+## 如何通信
+
+  1. NBA web通过调用nba-client.js interface来获获取play 和他们的shot info
+
+
+  ```
+   NBA WEB  <--request/response [nba-client.js] -->   Node Server    <--node index.js-->     NBA server
+                                                    Node API()                         playerInfo/shot data
+                                      const SERVER_URL = 'http://35.235.84.235:5000';
+  ```
 
 ### nba-client.js
 
@@ -82,17 +92,6 @@ nba.stats.shots({
 ```
 4. 拿到投球数据存在response
 
-
-## 如何通信
-
-1. NBA web通过调用nba-client.js interface来获获取play 和他们的shot info
-
-
-```
- NBA WEB  <--request/response [nba-client.js] -->   Node Server    <--node index.js-->     NBA server
-                                                  Node API()                         playerInfo/shot data
-                                    const SERVER_URL = 'http://35.235.84.235:5000';
-```
 ## shotcut
 
 * 创建component
