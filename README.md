@@ -98,6 +98,11 @@ nba.stats.shots({
 ```
 rcc + tab
 ```
+
+## react lifecycle
+
+[lifecycle](https://docs.google.com/document/d/15VHlygOAsuG1P9YOkhBR3MMhzI1psHfWMBLUVwoVb-g/edit)
+
 ## fetch ... then 通fetch向后端获取promise,创建一个request 请求
 
 * then 什么时候被调用？
