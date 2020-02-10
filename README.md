@@ -31,6 +31,34 @@ npm start
         APP
         / \
       topbar Main
-              / \
-          profile  shot
+              / \ （by props）
+          profile  shotchart (flexbox)
 ```
+
+* NBA存在跨域访问限制所以自己用自己创建的server
+  - 前端broswer向后端拿数据属于CORS
+  - 但是node 属于后端，所以
+* 跨域
+  * 端口不一致
+  * IP不一致
+```
+ NBA WEB  <--request-->   Node Server    <--node index.js-->         NBA server
+                          Node API()
+                const SERVER_URL = 'http://35.235.84.235:5000';
+
+```
+## shotcut
+
+* 创建component
+```
+rcc + tab
+```
+
+
+## promise 的状态
+
+//pending
+//resolve
+//reject
+
+## Main 传 info 给profile 通过props
