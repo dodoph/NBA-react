@@ -56,6 +56,27 @@ MVVM Model-View-ViewModel pattern
                                                     Node API()                         playerInfo/shot data
                                       const SERVER_URL = 'http://35.235.84.235:5000';
   ```
+### 数据通信
+
+  ```
+           p (define call back func回调) c的改变其实是父组件改变父组件
+      /         \
+    child       child          
+  ```
+  1. parent => child : props
+    - 在parent里面设置属性A
+    - 在child里面通过 props.A 拿到
+  2. child => parent: callback
+    - 在parent里面定义call back 函数，并且把这个callback 函数通过props传给child
+    - 在child使用props的值时，它是通过调用parent传下来的这个callback函数
+    - child到parent的数据修改，实际是parent修改parent
+  3. child => child
+    - 必须通过parent component
+    - 先调用2.再执行1
+
+  * setstates 变化=> render变化
+  * UI 变化=> data 变化
+
 
 ### nba-client.js
 
@@ -136,3 +157,58 @@ margin B top 10
 ```
 
 ## prop-types 校验
+
+
+*****
+
+## filter
+```
+filter       ShotChart  <--------|
+|------------------------------>main
+
+```
+* 新的层级关系
+  - 便于数据管理
+```
+                    Main
+                 /      \ (props) playerId
+            Profile   dataview
+                     /      \ (props) playerId
+                  ShotChart filter （sibling 之间的通信必须通过parent)
+                             minCount/chartType/Tooltips
+```
+
+* 安装ant design
+
+1. ```npm install --save antd```
+2. ```npm install -S lodash```
+
+
+- reat UI library with lots of components
+- slider
+
+## CounterSlider.js
+* control components 双向绑定
+* 用stats 记录私有属性
+
+* filter data change ====call back====> dataview ========> ShotChart
+
+## TOOLTIPS
+
+```
+Tooltips      
+
+```
+
+
+
+## debounce
+* import lodash
+
+防抖：防止用户在短时间滑动造成阻塞
+
+## componentDidMount vs. componentDidUpdata
+
+
+componentDidMount:只渲染一次
+componentDidUpdata：多次渲染
