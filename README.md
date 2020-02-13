@@ -72,15 +72,17 @@ MVVM Model-View-ViewModel pattern
     child       child          
   ```
   1. parent => child : props
-    I. 在parent里面设置属性A
-    II. 在child里面通过 props.A 拿到
+  - 在parent里面设置属性A
+  - 在child里面通过 props.A 拿到
+
   2. child => parent: callback
-    - 在parent里面定义call back 函数，并且把这个callback 函数通过props传给child
-    - 在child使用props的值时，它是通过调用parent传下来的这个callback函数
-    - child到parent的数据修改，实际是parent修改parent
+  - 在parent里面定义call back 函数，并且把这个callback 函数通过props传给child
+  - 在child使用props的值时，它是通过调用parent传下来的这个callback函数
+  - child到parent的数据修改，实际是parent修改parent
+  
   3. child => child
-    - 必须通过parent component
-    - 先调用2.再执行1
+  - 必须通过parent component
+  - 先调用2.再执行1
 
   * setstates 变化=> render变化
   * UI 变化=> data 变化
