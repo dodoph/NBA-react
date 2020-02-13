@@ -11,6 +11,13 @@ npm install --save d3-shotchart
 
 npm start
 ```
+* 安装ant design
+
+1. ```npm install --save antd```
+2. ```npm install -S lodash```
+
+
+
 
 ## Design
 
@@ -48,6 +55,7 @@ MVVM Model-View-ViewModel pattern
 
 ## 如何通信
 
+### 外部通信
   1. NBA web通过调用nba-client.js interface来获获取play 和他们的shot info
 
 
@@ -56,7 +64,7 @@ MVVM Model-View-ViewModel pattern
                                                     Node API()                         playerInfo/shot data
                                       const SERVER_URL = 'http://35.235.84.235:5000';
   ```
-### 数据通信
+### 内部数据通信
 
   ```
            p (define call back func回调) c的改变其实是父组件改变父组件
@@ -77,6 +85,7 @@ MVVM Model-View-ViewModel pattern
   * setstates 变化=> render变化
   * UI 变化=> data 变化
 
+## 各个函数
 
 ### nba-client.js
 
@@ -113,55 +122,14 @@ nba.stats.shots({
 ```
 4. 拿到投球数据存在response
 
-## shotcut
+### shotcut
 
 * 创建component
 ```
 rcc + tab
 ```
 
-## react lifecycle
-
-[lifecycle](https://docs.google.com/document/d/15VHlygOAsuG1P9YOkhBR3MMhzI1psHfWMBLUVwoVb-g/edit)
-
-## fetch ... then 通fetch向后端获取promise,创建一个request 请求
-
-* then 什么时候被调用？
-  - 首先，then是通过promise进行链式调用
-  - 当拿到信息是then才会被调用，在调用之前，promise有3种状态
-
-### promise 的状态
-
-* pending
-* resolve
-* reject
-
-## Main 传 info 给profile 通过props
-
-
-## margin 塌陷
-
-```
-margin A botton 10
-                   ===> margin 10 Effect
-margin B top 10
-````
-
-## react 解构赋值 distructure
-
-* nba.findPlayer('Stephen Curry').playerId 解构用法
-* playerID: xxx 赋值用法
-
-```
-{ PlayerID: nba.findPlayer('Stephen Curry').playerId}
-```
-
-## prop-types 校验
-
-
-*****
-
-## filter
+### filter
 ```
 filter       ShotChart  <--------|
 |------------------------------>main
@@ -178,12 +146,6 @@ filter       ShotChart  <--------|
                              minCount/chartType/Tooltips
 ```
 
-* 安装ant design
-
-1. ```npm install --save antd```
-2. ```npm install -S lodash```
-
-
 - reat UI library with lots of components
 - slider
 
@@ -199,15 +161,54 @@ filter       ShotChart  <--------|
 Tooltips      
 
 ```
+## React 其他知识点
 
 
+### react lifecycle
 
-## debounce
+[lifecycle](https://docs.google.com/document/d/15VHlygOAsuG1P9YOkhBR3MMhzI1psHfWMBLUVwoVb-g/edit)
+
+### fetch ... then 通fetch向后端获取promise,创建一个request 请求
+
+* then 什么时候被调用？
+  - 首先，then是通过promise进行链式调用
+  - 当拿到信息是then才会被调用，在调用之前，promise有3种状态
+
+### promise 的状态
+
+* pending
+* resolve
+* reject
+
+### Main 传 info 给profile 通过props
+
+
+### margin 塌陷
+
+```
+margin A botton 10
+                   ===> margin 10 Effect
+margin B top 10
+````
+
+### react 解构赋值 distructure
+
+* nba.findPlayer('Stephen Curry').playerId 解构用法
+* playerID: xxx 赋值用法
+
+```
+{ PlayerID: nba.findPlayer('Stephen Curry').playerId}
+```
+
+### prop-types 校验
+
+
+### debounce
 * import lodash
 
 防抖：防止用户在短时间滑动造成阻塞
 
-## componentDidMount vs. componentDidUpdata
+### componentDidMount vs. componentDidUpdata
 
 
 componentDidMount:只渲染一次
