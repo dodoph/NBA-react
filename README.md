@@ -141,7 +141,7 @@ filter       ShotChart  <--------|
 ```
 * 新的层级关系
   - 便于数据管理
-[data flow](https://github.com/dodoph/NBA-react/blob/master/nba-Diagram.png)
+https://github.com/dodoph/NBA-react/blob/master/nba-Diagram.png
 
 - reat UI library with lots of components
 - slider
