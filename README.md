@@ -141,21 +141,7 @@ filter       ShotChart  <--------|
 ```
 * 新的层级关系
   - 便于数据管理
-```
-                app
-              /      \
-         Profile     Main
-     props/callback  /  \ (props) playerId
-    (dataSource) SearchBar    player
-                  |      props/     \ (props) playerId
-                       profile    dataView   (chartType; displayTooltip; minCount)
-                            props /    \ (props) playerId / callback
-                           ShotChart   filter （sibling 之间的通信必须通过parent)
-                        props; callback/   \callback; props
-                              CounterSlider  filterS
-                                     |          |
-                                minCount   chartType/Tooltips
-```
+[data flow](https://github.com/dodoph/NBA-react/blob/master/nba-Diagram.png)
 
 - reat UI library with lots of components
 - slider
