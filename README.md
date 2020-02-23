@@ -79,7 +79,7 @@ MVVM Model-View-ViewModel pattern
   - 在parent里面定义call back 函数，并且把这个callback 函数通过props传给child
   - 在child使用props的值时，它是通过调用parent传下来的这个callback函数
   - child到parent的数据修改，实际是parent修改parent
-  
+
   3. child => child
   - 必须通过parent component
   - 先调用2.再执行1
@@ -105,6 +105,8 @@ MVVM Model-View-ViewModel pattern
     - 像node server（nba-client） 发送http request
     - connect with server
 4. 通过props将state 传给profile 和 shotchart
+
+5.
 
 ###  Profile.js
 
@@ -140,12 +142,14 @@ filter       ShotChart  <--------|
 * 新的层级关系
   - 便于数据管理
 ```
-                    Main
-                 /      \ (props) playerId
-            Profile   dataview
-                     /      \ (props) playerId
-                  ShotChart filter （sibling 之间的通信必须通过parent)
-                             minCount/chartType/Tooltips
+                app
+              /      \
+         Profile     Main
+                    /  \ (props) playerId
+             SearchBar     dataview
+                          /      \ (props) playerId
+                  ShotChart       filter （sibling 之间的通信必须通过parent)
+                                  minCount/chartType/Tooltips
 ```
 
 - reat UI library with lots of components
@@ -163,6 +167,49 @@ filter       ShotChart  <--------|
 Tooltips      
 
 ```
+
+
+### SearchBar.js
+
+* import ant desisgn
+  * auto-complete function
+    - input
+    - keyword
+    - option-list
+    - select option
+
+* option-list
+  * fetch data: onSearch={this.handleSearch}
+    * call 回调函数 handleSearch()=>{}
+      * 通过nba keyword，并进行处理拿到name 和 id
+      * setStates 使得render
+  * display data: dataSource
+    * 将每一条数据变成一个option
+      * 但是option是一条条的，如果保证最快更新用key去更新
+    * key 每条数据变成一个option
+      * key 是给diff用的，只在component下面能看到，页面上面是看不到的
+    * value 选择某一条data时候，会显示在search bar上面 optionLabelProp
+    * img
+
+* onSelect
+  * when click, trigger onSelect
+  * onSelect = (value) =>{}
+    * after select, update player component
+
+* SeachBar => player
+
+```
+            === playerInfo call back ===>            ====this.props===>
+[SeachBar]                                  [main]                          [player component]
+            <======== props  ========                < ==== callback ====
+```
+1. 在main里面定义回调函数 handleSelectPlayer = (playerName) => {}
+2. 将回调函数通过props传给child component  <SearchBar handleSelectPlayer={this.handleSelectPlayer}/>，so search bar  can access this func
+3. In searchbar.js, 调用callback函数  onSelect = (name) => {this.props.handleSelectPlayer(name);}  当searchbar handleSelectPlayer 发生改变时候，它将name是回传给了main
+4. 回到main.js 已经拿到了player name；然后要通过componentDidMount() loadPlayerInfo = (playerName) => {} 去nba库找球员的信息，并setState（）
+5. 当setState()时候，会在一个trigger render() 然后传给child component：player
+
+
 ## React 其他知识点
 
 
@@ -213,5 +260,61 @@ margin B top 10
 ### componentDidMount vs. componentDidUpdata
 
 
-componentDidMount:只渲染一次
-componentDidUpdata：多次渲染
+componentDidMount:获取数据时候用的，只渲染一次
+componentDidUpdata：更新数据时候用的；多次渲染
+
+
+## Map vs filter
+
+* Map() : access array
+* filter(): 删除
+
+
+
+
+*****
+
+
+# Redux
+
+## 通信
+
+* 子组件
+  * 对外接口 props 传来的
+  * states 记录内部状态
+  * 问题1：
+    * 需要3个callback，数据重复了
+    * 数据一致性无法保证
+  * 优化1
+    * 增加base component
+    * 将数据独立成组件，进行全局管理，所以用redux进行管理
+  * 问题2：
+    * grandparent => parent => child
+  * 优化2:
+    * 使用context
+    * 将数据独立与组件，集中
+
+```
+              counter(parent)            states = c1+c2+c3
+           /     |      \
+        c1       c2      c3  (child)
+      state1   state2    state3
+                b->b1(b1 没有往回传，parent不知道是b还是b1,数据一致性无法保证)
+```
+
+```
+
+      grandparent
+          |
+        parent
+          |
+        child
+
+
+```
+
+## flux
+
+arch
+
+##
