@@ -145,11 +145,16 @@ filter       ShotChart  <--------|
                 app
               /      \
          Profile     Main
-                    /  \ (props) playerId
-             SearchBar     dataview
-                          /      \ (props) playerId
-                  ShotChart       filter （sibling 之间的通信必须通过parent)
-                                  minCount/chartType/Tooltips
+     props/callback  /  \ (props) playerId
+    (dataSource) SearchBar    player
+                  |      props/     \ (props) playerId
+                       profile    dataView   (chartType; displayTooltip; minCount)
+                            props /    \ (props) playerId / callback
+                           ShotChart   filter （sibling 之间的通信必须通过parent)
+                        props; callback/   \callback; props
+                              CounterSlider  filterS
+                                     |          |
+                                minCount   chartType/Tooltips
 ```
 
 - reat UI library with lots of components
