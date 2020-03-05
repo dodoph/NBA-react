@@ -1,5 +1,7 @@
 # React NBA
 
+![](chrome-capture.gif)
+
 ## Install
 ```
 Nba web Setup
